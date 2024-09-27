@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017ef7f24da00764dab0b2a6d0f586b4, type: 3}
+  m_Name: TopicData 6
+  m_EditorClassIdentifier: 
+  id: 6
+  topic: 'Things that require a ticket
+
+'
+  topicImg: {fileID: 0}
+  isNoun: 0
+  answerList:
+  - answer: movie
+    allowed:
+    - cinema
+    - movie theater
+    - film
+  - answer: concert
+    allowed:
+    - opera
+    - musical
+  - answer: plane
+    allowed:
+    - airplane
+  - answer: train
+    allowed: []
+  - answer: bus
+    allowed: []
+  - answer: parking
+    allowed:
+    - car park
+    - parking slot
+  - answer: game
+    allowed:
+    - sport
+    - sport match
+    - match

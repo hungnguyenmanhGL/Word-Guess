@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017ef7f24da00764dab0b2a6d0f586b4, type: 3}
+  m_Name: TopicData 5
+  m_EditorClassIdentifier: 
+  id: 5
+  topic: 
+  topicImg: {fileID: 21300000, guid: 1653d5481b1495240a0f54dc6b00a909, type: 3}
+  isNoun: 0
+  answerList:
+  - answer: air balloon
+    allowed:
+    - hot air balloon
+    - balloon
+  - answer: mountain
+    allowed: []
+  - answer: sky
+    allowed:
+    - horizon
+  - answer: height
+    allowed:
+    - high
+    - fly

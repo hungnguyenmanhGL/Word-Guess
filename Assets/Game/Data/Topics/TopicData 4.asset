@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017ef7f24da00764dab0b2a6d0f586b4, type: 3}
+  m_Name: TopicData 4
+  m_EditorClassIdentifier: 
+  id: 4
+  topic: First thing you do in the morning
+  topicImg: {fileID: 0}
+  isNoun: 0
+  answerList:
+  - answer: breakfast
+    allowed: []
+  - answer: brush teeth
+    allowed:
+    - brush
+  - answer: turn off alarm
+    allowed:
+    - alarm
+    - alarm off
+  - answer: toilet
+    allowed:
+    - take a bath
+    - wash
+    - bath
+    - wash face
+    - take bath
+  - answer: stretch
+    allowed:
+    - yawn
+  - answer: check phone
+    allowed: []
