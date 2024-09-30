@@ -30,8 +30,6 @@ MonoBehaviour:
     allowed: []
   - answer: pear
     allowed: []
-  - answer: lychee
-    allowed: []
   - answer: plum
     allowed: []
   - answer: grape

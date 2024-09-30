@@ -47,6 +47,7 @@ public class AnswerView : View<AnswerData>
             return;
         }
         revealTween = rectTrans.DOLocalRotate(new Vector3(0, 180, 0), 1f).OnUpdate(OnHalfReveal);
+        SoundDatabase.Instance.CorrectAudio.Play();
     }
 
     public void OnHalfReveal() {
@@ -64,7 +65,8 @@ public class AnswerView : View<AnswerData>
     }
 
     private void ShowHint() {
-
+        HintPanel hintPanel = UIManager.Instance.Push<HintPanel>();
+        hintPanel.SetAnswer(Model.Answer);
     }
 
     #region Visuals

@@ -37,6 +37,12 @@ public class GamePanel : UIFrame {
 
     protected override void OnShow(bool instant = false) {
         base.OnShow(instant);
+        int width = Camera.main.pixelWidth;
+        if (Application.platform == RuntimePlatform.WindowsEditor && width >= 1920) {
+            width = 1080 * 3;
+        }
+        tmpTopic.rectTransform.sizeDelta = new Vector2(width, tmpTopic.rectTransform.sizeDelta.y);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(scroll.content);
         EventSystem.current.SetSelectedGameObject(inputField.gameObject);
         inputField.ActivateInputField();
     }
@@ -100,15 +106,31 @@ public class GamePanel : UIFrame {
                 if (CompareAnswer(input, alter)) return i;
             }
         }
+        SoundDatabase.Instance.WrongAudio.Play();
         return -1;
     }
 
     private bool CompareAnswer(string input, string ans) {
         string singular = Depluralize(input);
         string lowerAns = ans.ToLower();
-        return input.Equals(ans) || input.Equals(lowerAns) || singular.Equals(ans) || singular.Equals(lowerAns);
-    }
 
+        if (Mathf.Abs(input.Length - ans.Length) >= 3 || Mathf.Abs(input.Length - lowerAns.Length) >= 3
+            || Mathf.Abs(singular.Length - ans.Length) >= 3 || Mathf.Abs(singular.Length - lowerAns.Length) >= 3)
+            return false;
+        if (input.Equals(ans) || input.Equals(lowerAns) || singular.Equals(ans) || singular.Equals(lowerAns)) 
+            return true;
+        if (ans.Length >= ConfigDatabase.Instance.GrammarCheckLength) {
+            for (int i=0; i<input.Length; i++) {
+
+            }
+        }
+
+        return false;
+    }
+    #endregion
+    #endregion
+
+    #region String Formatting
     public static string Depluralize(string word) {
         // Dictionary of irregular singulars
         var irregulars = new Dictionary<string, string>
@@ -153,7 +175,38 @@ public class GamePanel : UIFrame {
         // If no changes are made, return the original word
         return word;
     }
-    #endregion
+
+    private bool CheckAdmissibleAnswer(string a, string b) {
+        if (Mathf.Abs(a.Length - b.Length) > 2) // If the length difference is more than 2, they can't be similar within two mistakes
+            return false;
+
+        int mistakes = 0;
+        int i = 0, j = 0;
+
+        while (i < a.Length && j < b.Length) {
+            if (a[i] != b[j]) {
+                mistakes++;
+                if (mistakes > ConfigDatabase.Instance.MaxMistakeCount)
+                    return false;
+
+                if (a.Length > b.Length)
+                    i++;
+                else if (a.Length < b.Length)
+                    j++;
+                else {
+                    i++;
+                    j++;
+                }
+            } else {
+                i++;
+                j++;
+            }
+        }
+
+        mistakes += Mathf.Abs(a.Length - i) + Mathf.Abs(b.Length - j);
+
+        return mistakes <= ConfigDatabase.Instance.MaxMistakeCount;
+    }
     #endregion
 
     #region Win
@@ -167,6 +220,7 @@ public class GamePanel : UIFrame {
 
     private IEnumerator IEWin() {
         btnHide.enabled = false;
+        SoundDatabase.Instance.WinAudio.Play();
         yield return new WaitForSeconds(2f);
         btnHide.enabled = true;
         WinPanel winPanel = UIManager.Instance.Push<WinPanel>();
@@ -213,6 +267,7 @@ public class GamePanel : UIFrame {
             answerList[i].SetModel(topicData.AnswerList[i]);
             answerList[i].Show();
         }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(scroll.content);
     }
 
     public void LoadSave() {

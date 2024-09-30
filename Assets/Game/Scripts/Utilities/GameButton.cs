@@ -28,6 +28,11 @@ public class GameButton : Button, IPointerDownHandler, IPointerUpHandler {
     }
 #endif
 
+    protected override void Start() {
+        base.Start();
+        if (pressAudio.IsEmpty) pressAudio.Clip = SoundDatabase.Instance.ButtonClickAudio.Clip;
+    }
+
     public void SetBackground(Sprite sprite) {
         if (background != null) background.overrideSprite = sprite;
     }

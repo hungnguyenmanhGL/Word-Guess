@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HAVIGAME;
+using HAVIGAME.Audios;
 
-public class SoundDatabase : MonoBehaviour
+[CreateAssetMenu(fileName = "SoundDatabase", menuName = "Database/SoundDatabase")]
+public class SoundDatabase : Database<SoundDatabase>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Audio correctAudio;
+    [SerializeField] private Audio wrongAudio;
+    [SerializeField] private Audio winAudio;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("[Default]")]
+    [SerializeField] private Audio buttonClickAudio;
+
+    public Audio CorrectAudio => correctAudio;
+    public Audio WrongAudio => wrongAudio;
+    public Audio WinAudio => winAudio;
+    public Audio ButtonClickAudio => buttonClickAudio;
 }
