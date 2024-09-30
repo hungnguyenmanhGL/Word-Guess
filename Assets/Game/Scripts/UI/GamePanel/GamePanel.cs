@@ -28,6 +28,7 @@ public class GamePanel : UIFrame {
     private ColorData colorData;
 
     private int answeredCount;
+    private int lastHintIndex;
 
     private Tween revealTween;
     private Tween wrongTween;
@@ -81,10 +82,7 @@ public class GamePanel : UIFrame {
         input = input.ToLower();
         int num = IsAnswer(input);
         if (num >= 0) {
-            ScrollToAnswer(num);
-            answerList[num].Reveal();
-            //save upon player answered correctly
-            GameData.Level.SaveTopic(topicData.Id, num);
+            RevealAnswer(num, true);
             answeredCount++;
             CheckWin();
         }
@@ -127,7 +125,23 @@ public class GamePanel : UIFrame {
 
         return false;
     }
+
+    private void RevealAnswer(int index, bool scrollTo = true) {
+        if (scrollTo) ScrollToAnswer(index);
+        answerList[index].Reveal();
+        //save upon player answered correctly
+        GameData.Level.SaveTopic(topicData.Id, index);
+    }
     #endregion
+
+    public void OnHintShow(AnswerView selected, HintPanel hintPanel) {
+        lastHintIndex = answerList.IndexOf(selected);
+        hintPanel.SetTopic(topicData);
+    }
+
+    public void OnAnswerByHint() {
+        RevealAnswer(lastHintIndex, false);
+    }
     #endregion
 
     #region String Formatting
@@ -234,6 +248,7 @@ public class GamePanel : UIFrame {
         answeredCount = 0;
         scroll.content.localPosition = new Vector3(0, scroll.content.localPosition.y, 0);
         foreach (AnswerView view in answerList) {
+            view.GamePanel = this;
             view.Hide();
         }
         LoadSave();

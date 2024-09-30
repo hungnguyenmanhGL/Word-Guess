@@ -20,6 +20,10 @@ public class LetterView : MonoBehaviour
         set => panel = value;
     }
 
+    protected virtual void Start() {
+        btn.onClick.AddListener(OnClick);
+    }
+
     public void SetLetter(char letter) {
         char up = System.Char.ToUpper(letter);
         this.letter = letter;
@@ -33,7 +37,6 @@ public class LetterView : MonoBehaviour
     }
 
     protected virtual void OnClick() {
-        ToggleShow(false);
         //call fill function in HintPanel here...
         panel.FillSlot(this);
     }

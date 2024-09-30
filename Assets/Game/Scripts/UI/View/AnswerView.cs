@@ -21,11 +21,16 @@ public class AnswerView : View<AnswerData>
     [SerializeField] private Image imgCircle;
     [SerializeField] private Button btn;
 
+    private GamePanel panel;
+
     private Tween revealTween;
     private bool isRevealed;
 
     public RectTransform RectTrans => rectTrans;
     public bool IsRevealed => isRevealed;
+    public GamePanel GamePanel {
+        set => panel = value;
+    }
 
     private void Start() {
         btn.onClick.AddListener(ShowHint);
@@ -66,6 +71,7 @@ public class AnswerView : View<AnswerData>
 
     private void ShowHint() {
         HintPanel hintPanel = UIManager.Instance.Push<HintPanel>();
+        panel.OnHintShow(this, hintPanel);
         hintPanel.SetAnswer(Model.Answer);
     }
 
