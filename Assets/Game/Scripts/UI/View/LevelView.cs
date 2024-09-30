@@ -21,7 +21,7 @@ public class LevelView : View<LevelData>
     }
 
     public override void Show() {
-        tmpLevel.text = Model.Id.ToString();
+        tmpLevel.text = (Model.Id + 1).ToString();
         for (int i=0; i<3; i++) {
             starList[i].Toggle(GameData.Level.IsTopicCompleted(Model.GetTopicByOrder(i).Id));
         }

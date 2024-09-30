@@ -10,28 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 017ef7f24da00764dab0b2a6d0f586b4, type: 3}
-  m_Name: TopicData 22
+  m_Name: TopicData 29
   m_EditorClassIdentifier: 
-  id: 22
-  topic: Things associated with Brazil
-  topicImg: {fileID: 0}
+  id: 29
+  topic: 
+  topicImg: {fileID: 21300000, guid: 6cc8a4ff8337b744db3e2a18c8439bf3, type: 3}
   isNoun: 0
   answerList:
-  - answer: Rio
+  - answer: suitcase
     allowed:
-    - Rio De Janeiro
-  - answer: hot
+    - luggage
+  - answer: travel
     allowed:
-    - tropical
-  - answer: football
+    - trip
+    - flight
+  - answer: airport
     allowed:
-    - soccer
-  - answer: beach
+    - airfield
+  - answer: conveyor
     allowed:
-    - sea
-  - answer: carnival
+    - conveyor belt
+    - luggage belt
+  - answer: vacation
     allowed:
-    - festival
-  - answer: dancing
-    allowed:
-    - dance
+    - holiday

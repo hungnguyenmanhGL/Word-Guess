@@ -10,28 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 017ef7f24da00764dab0b2a6d0f586b4, type: 3}
-  m_Name: TopicData 22
+  m_Name: TopicData 27
   m_EditorClassIdentifier: 
-  id: 22
-  topic: Things associated with Brazil
+  id: 27
+  topic: It's red
   topicImg: {fileID: 0}
   isNoun: 0
   answerList:
-  - answer: Rio
+  - answer: apple
+    allowed: []
+  - answer: tomato
+    allowed: []
+  - answer: blood
+    allowed: []
+  - answer: rose
     allowed:
-    - Rio De Janeiro
-  - answer: hot
+    - flower
+  - answer: stop sign
     allowed:
-    - tropical
-  - answer: football
+    - stop
+    - sign
+    - traffic sign
+  - answer: strawberry
+    allowed: []
+  - answer: pepper
     allowed:
-    - soccer
-  - answer: beach
+    - chili
+  - answer: fire engine
     allowed:
-    - sea
-  - answer: carnival
-    allowed:
-    - festival
-  - answer: dancing
-    allowed:
-    - dance
+    - fire truck
+    - fire

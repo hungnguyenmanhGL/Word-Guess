@@ -83,8 +83,6 @@ public class GamePanel : UIFrame {
         int num = IsAnswer(input);
         if (num >= 0) {
             RevealAnswer(num, true);
-            answeredCount++;
-            CheckWin();
         }
         else {
             wrongTween?.Kill();
@@ -129,8 +127,10 @@ public class GamePanel : UIFrame {
     private void RevealAnswer(int index, bool scrollTo = true) {
         if (scrollTo) ScrollToAnswer(index);
         answerList[index].Reveal();
+        answeredCount++;
         //save upon player answered correctly
         GameData.Level.SaveTopic(topicData.Id, index);
+        CheckWin();
     }
     #endregion
 

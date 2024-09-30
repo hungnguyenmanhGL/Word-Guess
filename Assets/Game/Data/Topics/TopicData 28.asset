@@ -10,28 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 017ef7f24da00764dab0b2a6d0f586b4, type: 3}
-  m_Name: TopicData 22
+  m_Name: TopicData 28
   m_EditorClassIdentifier: 
-  id: 22
-  topic: Things associated with Brazil
+  id: 28
+  topic: It weighs over a ton
   topicImg: {fileID: 0}
   isNoun: 0
   answerList:
-  - answer: Rio
+  - answer: car
+    allowed: []
+  - answer: plane
     allowed:
-    - Rio De Janeiro
-  - answer: hot
+    - airplane
+    - aircraft
+  - answer: boat
     allowed:
-    - tropical
-  - answer: football
+    - ship
+    - cruiser
+  - answer: elephant
+    allowed: []
+  - answer: whale
+    allowed: []
+  - answer: hippopotamus
     allowed:
-    - soccer
-  - answer: beach
+    - hippo
+  - answer: building
     allowed:
-    - sea
-  - answer: carnival
-    allowed:
-    - festival
-  - answer: dancing
-    allowed:
-    - dance
+    - house
+    - school
