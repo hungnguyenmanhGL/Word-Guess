@@ -52,9 +52,14 @@ public class HomePanel : UITab {
             view.transform.localScale = Vector3.one;
             lvlList.Add(view);
         }
+
+        int colorCount = 0;
         for (int i=0; i<lvlList.Count; i++) {
+            if (colorCount > ColorId.MaxId) colorCount = 0;
             lvlList[i].SetModel(LevelDatabase.Instance.GetDataById(i));
+            lvlList[i].SetColor(colorCount);
             lvlList[i].Show();
+            colorCount++;
         }
     }
 

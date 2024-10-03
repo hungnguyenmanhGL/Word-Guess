@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 using System.Collections;
+using HAVIGAME;
 
 public class GamePanel : UIFrame {
     [Header("[References]")]
@@ -20,8 +21,7 @@ public class GamePanel : UIFrame {
     [SerializeField] private Image imgTopic;
 
     [Header("[Answers]")]
-    [SerializeField] private AnswerView answerPrefab;
-    [SerializeField] private RectTransform answerPanel;
+    [SerializeField] private AnswerPanel answerPanel;
     [SerializeField] private List<AnswerView> answerList;
 
     private TopicData topicData;
@@ -64,8 +64,8 @@ public class GamePanel : UIFrame {
         RectTransform target = answerList[index].RectTrans;
 
         // Calculate the position we want to scroll to
-        float targetPosition = target.anchoredPosition.x + (scroll.viewport.rect.width / 2) - (target.rect.width/2);
-
+        float targetPosition = target.anchoredPosition.x + (scroll.viewport.rect.width / 2);
+        if (target.rect.width <= 240) targetPosition += target.rect.width;
         // Use DOTween to smoothly scroll to the new position
         revealTween = scroll.content.DOLocalMoveX(-targetPosition - target.rect.width, .2f).SetEase(Ease.Linear);
     }
@@ -261,41 +261,27 @@ public class GamePanel : UIFrame {
         imgTopic.gameObject.SetActive(topicData.IsImageTopic);
 
         int ansNum = topicData.AnswerList.Count;
-        int count = answerList.Count;
-        int dif = ansNum - count;
-        for (int i = 0; i < dif; i++) {
-            AnswerView view = Instantiate(answerPrefab, answerPanel);
-            view.transform.localScale = Vector3.one;
-            answerList.Add(view);
-        }
-        if (dif < 0) {
-            dif = Mathf.Abs(dif);
-            for (int i = 0; i < dif; i++) {
-                answerList[answerList.Count - i - 1].gameObject.SetActive(false);
-            }
-        }
+        if (answerPanel) answerPanel.Recycle();
+        answerPanel = PrefabDatabase.Instance.GetAnswerPanel(ansNum).Spawn();
+        answerPanel.RectTrans.SetParent(scroll.content);
+        answerPanel.RectTrans.localScale = Vector3.one;
+        answerPanel.SetAnswerList(topicData);
+        answerList = answerPanel.AnswerList;
 
-        for (int i = 0; i < ansNum; i++) {
-            answerList[i].gameObject.SetActive(true);
-            answerList[i].SetNumber(i + 1);
-
-            answerList[i].SetModel(topicData.AnswerList[i]);
-            answerList[i].Show();
-        }
         LayoutRebuilder.ForceRebuildLayoutImmediate(scroll.content);
     }
 
     public void LoadSave() {
         if (GameData.Level.IsTopicCompleted(topicData.Id)) {
             answeredCount = topicData.AnswerList.Count;
-            foreach (AnswerView view in answerList) view.Reveal(true);
+            answerPanel.RevealAll();
             return;
         }
         TopicSaveData data = GameData.Level.GetTopicSave(topicData.Id);
         if (data != null) {
             foreach (int index in data.Answered) {
                 answeredCount++;
-                answerList[index].Reveal(true);
+                answerPanel.RevealByIndex(index, true);
             }
         }
     }

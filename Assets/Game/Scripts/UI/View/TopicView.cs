@@ -49,8 +49,8 @@ public class TopicView : View<TopicData>
 
     private void PlayTopic() {
         GamePanel panel = UIManager.Instance.Push<GamePanel>();
-        panel.SetColor(colorId);
         panel.SetTopic(Model);
+        panel.SetColor(colorId);
         panel.Reset();
     }
 

@@ -37,7 +37,7 @@ public class HintPanel : UIFrame
 
     protected override void OnShow(bool instant = false) {
         base.OnShow(instant);
-        SpawnAvailableLetters();
+        SpawnAvailableLetterViews();
     }
 
     protected override void OnHideCompleted() {
@@ -81,7 +81,7 @@ public class HintPanel : UIFrame
     #endregion
 
     #region OnShow Set
-    private void SpawnAvailableLetters() {
+    private void SpawnAvailableLetterViews() {
         if (availableList.Count > 0) return;
         for (int i = 0; i < 20; i++) {
             LetterView view = letterPrefab.Spawn();
@@ -99,6 +99,7 @@ public class HintPanel : UIFrame
         //Randomize positions for every letter of the answer
         usedIndex.Clear();
         for (int i = 1; i < answer.Length; i++) {//start from 1 because answer[0] is always shown
+            if (answer[i] == ' ') continue;
             int index = Random.Range(0, availableList.Count);
             while (usedIndex.Contains(index)) index = Random.Range(0, availableList.Count);
             availableList[index].SetLetter(answer[i]);
@@ -124,8 +125,8 @@ public class HintPanel : UIFrame
             view.Panel = this;
             slotList.Add(view);
             //always show the first letter of the answer
-            if (i == 0) {
-                view.SetFilledLetter(answer[0], -1);
+            if (i == 0 || answer[i] == ' ') {
+                view.SetFilledLetter(answer[i], -1);
                 view.SetCorrect();
             }//but hide other slots 
             else view.Reset();

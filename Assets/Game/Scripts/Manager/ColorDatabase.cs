@@ -33,4 +33,13 @@ public class ColorData {
 
 public static class ColorId {
     public const int blue1 = 0;
+    public const int blue2 = 1;
+    public const int blue3 = 2;
+    public const int green1 = 3;
+    public const int green2 = 4;
+    public const int green3 = 5;
+    public const int green4 = 6;
+    public const int green5 = 7;
+
+    public static int MaxId => green5;
 }

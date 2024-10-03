@@ -10,6 +10,7 @@ public class LetterView : MonoBehaviour
     [SerializeField] protected Button btn;
     [SerializeField] protected TextMeshProUGUI tmpLetter;
     [SerializeField] protected Image background;
+    [SerializeField] protected Image imgEmpty;
 
     protected char letter;
     protected HintPanel panel;
@@ -33,6 +34,7 @@ public class LetterView : MonoBehaviour
     public virtual void ToggleShow(bool toShow) {
         if (background) background.enabled = toShow;
         tmpLetter.gameObject.SetActive(toShow);
+        imgEmpty.gameObject.SetActive(!toShow);
         btn.enabled = toShow;
     }
 

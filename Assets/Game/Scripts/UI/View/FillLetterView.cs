@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class FillLetterView : LetterView
 {
-    [SerializeField] private Image imgEmpty;
-
     private int usedLetterIndex;// match the index of the LetterView used to fill this
     private bool isFilled;
 
@@ -18,11 +16,6 @@ public class FillLetterView : LetterView
         isFilled = true;
         this.usedLetterIndex = usedLetterIndex;
         ToggleShow(true);
-    }
-
-    public override void ToggleShow(bool toShow) {
-        base.ToggleShow(toShow);
-        imgEmpty.gameObject.SetActive(!toShow);
     }
 
     protected override void OnClick() {
