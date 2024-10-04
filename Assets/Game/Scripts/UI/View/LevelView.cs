@@ -30,7 +30,7 @@ public class LevelView : View<LevelData>
     public void OpenLevel() {
         SelectTopicPanel selectPanel = UIManager.Instance.Push<SelectTopicPanel>();
         selectPanel.SetTopicList(Model);
-        selectPanel.SetBGColor(ColorDatabase.Instance.GetColorDataById(colorId).Bg);
+        selectPanel.SetColor(ColorDatabase.Instance.GetColorDataById(colorId));
     }
 
     public void SetColor(int colorId = ColorId.blue1) {

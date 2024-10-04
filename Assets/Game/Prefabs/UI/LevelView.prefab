@@ -91,7 +91,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1045537362, guid: d7bb413870b77c24f8e4c6a45015e7f2, type: 3}
+  m_Sprite: {fileID: 2003802664, guid: 3a2d2c00b7555f644aa3f65b518e6787, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -150,7 +150,7 @@ MonoBehaviour:
   title: {fileID: 0}
   scale: {x: 1.1, y: 1.1, z: 1.1}
   pressAudio:
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
     channel: 2
     volume: 1
     loop: 1

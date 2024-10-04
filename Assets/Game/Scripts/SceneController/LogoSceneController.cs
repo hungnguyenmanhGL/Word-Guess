@@ -68,13 +68,14 @@ public class LogoSceneController : SceneController {
 
         steps++;
 
-        if (GameAdvertising.IsRemoveAds() || (!GameAdvertising.IsAppOpenIntertitialAdEnable && !GameAdvertising.IsAppOpenAdEnable)) {
-            steps += 2;
-        } else {
-#if UNITY_EDITOR
-            steps += 2;
-#endif
-        }
+        //        if (GameAdvertising.IsRemoveAds() || (!GameAdvertising.IsAppOpenIntertitialAdEnable && !GameAdvertising.IsAppOpenAdEnable)) {
+        //            steps += 2;
+        //        } else {
+        //#if UNITY_EDITOR
+        //            steps += 2;
+        //#endif
+        //        }
+        steps += 2;
 
         while (steps == 3) {
             if (seasonCount > 0) elapsed += Time.deltaTime;

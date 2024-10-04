@@ -33,7 +33,6 @@ public class TopicView : View<TopicData>
         tmpTopic.text = Model.Topic;
         imgTopic.sprite = Model.TopicImg;
         UpdateProgress();
-        SetColor();
     }
 
     public void UpdateProgress() {
@@ -54,8 +53,8 @@ public class TopicView : View<TopicData>
         panel.Reset();
     }
 
-    public void SetColor(int colorId = ColorId.blue1) {
-        this.colorId = colorId;
-        background.color = ColorDatabase.Instance.GetColorDataById(colorId).Base;
+    public void SetColor(ColorData data) {
+        this.colorId = data.Id;
+        background.color = data.Base;
     }
 }

@@ -13,6 +13,7 @@ public class GamePanel : UIFrame {
     [SerializeField] private TextMeshProUGUI txtLevel;
     [SerializeField] private HideButton btnHide;
     [SerializeField] private Image background;
+    [SerializeField] private Image inputBg;
     [SerializeField] private ScrollRect scroll;
     [SerializeField] private TMP_InputField inputField;
 
@@ -44,8 +45,7 @@ public class GamePanel : UIFrame {
         }
         tmpTopic.rectTransform.sizeDelta = new Vector2(width, tmpTopic.rectTransform.sizeDelta.y);
         LayoutRebuilder.ForceRebuildLayoutImmediate(scroll.content);
-        EventSystem.current.SetSelectedGameObject(inputField.gameObject);
-        inputField.ActivateInputField();
+        SelectInput();
     }
 
     protected override void OnBack() { }
@@ -55,6 +55,16 @@ public class GamePanel : UIFrame {
         if (Input.GetKeyDown(KeyCode.Return)) {
             OnInputSubmit();
         }
+
+        if (EventSystem.current.currentSelectedGameObject == null) {
+            SelectInput();
+        }
+    }
+
+    private void SelectInput() {
+        EventSystem.current.SetSelectedGameObject(inputField.gameObject);
+        inputField.ActivateInputField();
+        //inputBg.rectTransform.anchoredPosition = new Vector2(0, KeyboardUtility.GetKeyboardHeight(false));
     }
 
     // Call this method to scroll to a specific child index
@@ -290,6 +300,7 @@ public class GamePanel : UIFrame {
     public void SetColor(int colorId = ColorId.blue1) {
         colorData = ColorDatabase.Instance.GetColorDataById(colorId);
         background.color = colorData.LightBg;
+        inputBg.color = colorData.Base;
         foreach (AnswerView view in answerList) view.SetColor(colorData);
     }
 }

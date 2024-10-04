@@ -32,7 +32,10 @@ public class SelectTopicPanel : UIFrame
         }
     }
 
-    public void SetBGColor(Color color) {
-        background.color = color;
+    public void SetColor(ColorData data) {
+        background.color = data.Bg;
+        foreach (TopicView view in topicList) {
+            view.SetColor(data);
+        }
     }
 }
