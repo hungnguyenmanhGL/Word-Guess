@@ -42,8 +42,9 @@ public class HintPanel : UIFrame
 
     protected override void OnHideCompleted() {
         base.OnHideCompleted();
+        GamePanel gamePanel = (GamePanel)UIManager.Instance.Peek();
+        gamePanel.SelectInput();
         if (isAnswered) {
-            GamePanel gamePanel = (GamePanel)UIManager.Instance.Peek();
             gamePanel.OnAnswerByHint();
             isAnswered = false;
         }

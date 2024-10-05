@@ -15,7 +15,7 @@ public class GamePanel : UIFrame {
     [SerializeField] private Image background;
     [SerializeField] private Image inputBg;
     [SerializeField] private ScrollRect scroll;
-    [SerializeField] private TMP_InputField inputField;
+    [SerializeField] private SubmitInputField inputField;
 
     [Header("[Topic]")]
     [SerializeField] private TextMeshProUGUI tmpTopic;
@@ -35,6 +35,7 @@ public class GamePanel : UIFrame {
     private Tween wrongTween;
 
     private void Start() {
+        inputField.onKeyboardDone.AddListener(OnInputSubmit);
     }
 
     protected override void OnShow(bool instant = false) {
@@ -61,7 +62,7 @@ public class GamePanel : UIFrame {
         }
     }
 
-    private void SelectInput() {
+    public void SelectInput() {
         EventSystem.current.SetSelectedGameObject(inputField.gameObject);
         inputField.ActivateInputField();
         //inputBg.rectTransform.anchoredPosition = new Vector2(0, KeyboardUtility.GetKeyboardHeight(false));
@@ -98,8 +99,7 @@ public class GamePanel : UIFrame {
             wrongTween?.Kill();
             wrongTween = inputField.transform.DOShakeRotation(0.5f, 10);
         }
-        EventSystem.current.SetSelectedGameObject(inputField.gameObject);
-        inputField.ActivateInputField();
+        SelectInput();
     }
 
     private int IsAnswer(string input) {
