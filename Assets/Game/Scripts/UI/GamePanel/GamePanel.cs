@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 using DG.Tweening;
 using System.Collections;
 using HAVIGAME;
+using System.Text;
 
 public class GamePanel : UIFrame {
     [Header("[References]")]
@@ -46,19 +47,33 @@ public class GamePanel : UIFrame {
         }
         tmpTopic.rectTransform.sizeDelta = new Vector2(width, tmpTopic.rectTransform.sizeDelta.y);
         LayoutRebuilder.ForceRebuildLayoutImmediate(scroll.content);
+        ToggleInput(true);
         SelectInput();
+        inputField.text = string.Empty;
+    }
+
+    protected override void OnHide(bool instant = false) {
+        base.OnHide(instant);
+        ToggleInput(false);
     }
 
     protected override void OnBack() { }
+
+    protected override void OnPause() {
+        base.OnPause();
+        ToggleInput(false);
+    }
+
+    protected override void OnResume() {
+        base.OnResume();
+        ToggleInput(true);
+
+    }
 
     #region Gameplay
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Return)) {
             OnInputSubmit();
-        }
-
-        if (EventSystem.current.currentSelectedGameObject == null) {
-            SelectInput();
         }
     }
 
@@ -66,6 +81,11 @@ public class GamePanel : UIFrame {
         EventSystem.current.SetSelectedGameObject(inputField.gameObject);
         inputField.ActivateInputField();
         //inputBg.rectTransform.anchoredPosition = new Vector2(0, KeyboardUtility.GetKeyboardHeight(false));
+    }
+
+    public void ToggleInput(bool enable) {
+        if (!enable) inputField.DeactivateInputField();
+        inputField.gameObject.SetActive(enable);
     }
 
     // Call this method to scroll to a specific child index
@@ -90,14 +110,18 @@ public class GamePanel : UIFrame {
         }
         string input = inputField.text;
         inputField.text = string.Empty;
+        input = RemoveEndSpace(input);
+        Debug.LogError(input);
         input = input.ToLower();
         int num = IsAnswer(input);
         if (num >= 0) {
             RevealAnswer(num, true);
         }
         else {
-            wrongTween?.Kill();
-            wrongTween = inputField.transform.DOShakeRotation(0.5f, 10);
+            if (wrongTween == null) {
+                wrongTween?.Kill();
+                wrongTween = inputField.transform.DOShakeRotation(0.5f, 10).OnComplete(() => { wrongTween = null; });
+            }
         }
         SelectInput();
     }
@@ -197,6 +221,17 @@ public class GamePanel : UIFrame {
         }
 
         // If no changes are made, return the original word
+        return word;
+    }
+
+    private string RemoveEndSpace(string word) {
+        int end = word.Length - 1;
+        int count = 0;
+        while (word[end] == ' ') {
+            end--;
+            count++;
+        }
+        if (count > 0) word = word.Remove(end + 1, count);
         return word;
     }
 
