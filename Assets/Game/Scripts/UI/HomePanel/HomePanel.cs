@@ -62,7 +62,7 @@ public class HomePanel : UITab {
         }
     }
 
-    protected void UpdateProgress() {
+    protected virtual void UpdateProgress() {
         foreach (LevelView view in lvlList)
             view.Show();
     }

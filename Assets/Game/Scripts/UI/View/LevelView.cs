@@ -14,7 +14,7 @@ public class LevelView : View<LevelData>
     [SerializeField] protected TextMeshProUGUI tmpLevel;
     [SerializeField] protected List<StarSlot> starList;
 
-    private int colorId;
+    protected int colorId;
 
     protected void Start() {
         btnLevel.onClick.AddListener(OpenLevel);    
@@ -23,7 +23,7 @@ public class LevelView : View<LevelData>
     public override void Show() {
         tmpLevel.text = (Model.Id + 1).ToString();
         for (int i=0; i<3; i++) {
-            starList[i].Toggle(GameData.Level.IsTopicCompleted(Model.GetTopicByOrder(i).Id));
+            starList[i].Toggle(GameData.Level.IsTopicCompleted(Model.GetTopicByOrder(i).Id, false));
         }
     }
 
@@ -33,7 +33,7 @@ public class LevelView : View<LevelData>
         selectPanel.SetColor(ColorDatabase.Instance.GetColorDataById(colorId));
     }
 
-    public void SetColor(int colorId = ColorId.blue1) {
+    public virtual void SetColor(int colorId = ColorId.blue1) {
         this.colorId = colorId;
         ColorData data = ColorDatabase.Instance.GetColorDataById(colorId);
         background.color = data.Base;

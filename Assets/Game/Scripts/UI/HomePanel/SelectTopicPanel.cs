@@ -19,9 +19,11 @@ public class SelectTopicPanel : UIFrame
     }
 
     public void SetTopicList(LevelData data) {
+        bool isTheme = data is ThemeLevelData;
         tmpLvl.text = string.Format("LEVEL \n {0}", data.Id + 1);
         for (int i = 0; i < data.TopicList.Count; i++) {
             topicList[i].SetModel(data.TopicList[i]);
+            topicList[i].SetThemeTopic(isTheme);
             topicList[i].Show();
         }
     }

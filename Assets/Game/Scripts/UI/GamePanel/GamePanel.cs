@@ -29,6 +29,7 @@ public class GamePanel : UIFrame {
     private TopicData topicData;
     private ColorData colorData;
 
+    private bool isThemeTopic;
     private int answeredCount;
     private int lastHintIndex;
 
@@ -161,7 +162,7 @@ public class GamePanel : UIFrame {
         answerList[index].Reveal();
         answeredCount++;
         //save upon player answered correctly
-        GameData.Level.SaveTopic(topicData.Id, index);
+        GameData.Level.SaveTopic(topicData.Id, index, isThemeTopic);
         CheckWin();
     }
     #endregion
@@ -269,7 +270,7 @@ public class GamePanel : UIFrame {
     #region Win
     private void CheckWin() {
         if (answeredCount == topicData.AnswerList.Count) {
-            GameData.Level.OnTopicComplete(topicData.Id);
+            GameData.Level.OnTopicComplete(topicData.Id, isThemeTopic);
             Debug.LogError("Win!");
             StartCoroutine(IEWin());
         }
@@ -297,8 +298,9 @@ public class GamePanel : UIFrame {
         LoadSave();
     }
 
-    public void SetTopic(TopicData topicData) {
+    public void SetTopic(TopicData topicData, bool isThemeTopic) {
         this.topicData = topicData;
+        this.isThemeTopic = isThemeTopic;
         imgTopic.sprite = topicData.TopicImg;
         tmpTopic.text = topicData.Topic;
         imgTopic.gameObject.SetActive(topicData.IsImageTopic);
@@ -315,12 +317,12 @@ public class GamePanel : UIFrame {
     }
 
     public void LoadSave() {
-        if (GameData.Level.IsTopicCompleted(topicData.Id)) {
+        if (GameData.Level.IsTopicCompleted(topicData.Id, isThemeTopic)) {
             answeredCount = topicData.AnswerList.Count;
             answerPanel.RevealAll();
             return;
         }
-        TopicSaveData data = GameData.Level.GetTopicSave(topicData.Id);
+        TopicSaveData data = GameData.Level.GetTopicSave(topicData.Id, isThemeTopic);
         if (data != null) {
             foreach (int index in data.Answered) {
                 answeredCount++;

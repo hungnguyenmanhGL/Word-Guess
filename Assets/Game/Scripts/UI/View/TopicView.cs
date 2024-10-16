@@ -20,6 +20,7 @@ public class TopicView : View<TopicData>
     [SerializeField] private Image imgTopic;
 
     private int colorId;
+    private bool isThemeTopic;
 
     private void Start() {
         btn.onClick.AddListener(PlayTopic);
@@ -36,19 +37,19 @@ public class TopicView : View<TopicData>
     }
 
     public void UpdateProgress() {
-        TopicSaveData save = GameData.Level.GetTopicSave(Model.Id);
+        TopicSaveData save = GameData.Level.GetTopicSave(Model.Id, isThemeTopic);
         if (save == null) {
             tmpProgress.text = string.Format("0/{0}", Model.AnswerList.Count);
         } else tmpProgress.text = string.Format("{0}/{1}", save.Answered.Count, Model.AnswerList.Count);
 
-        bool isDone = GameData.Level.IsTopicCompleted(Model.Id);
+        bool isDone = GameData.Level.IsTopicCompleted(Model.Id, isThemeTopic);
         imgStar.gameObject.SetActive(isDone);
         tmpProgress.gameObject.SetActive(!isDone);
     }
 
     private void PlayTopic() {
         GamePanel panel = UIManager.Instance.Push<GamePanel>();
-        panel.SetTopic(Model);
+        panel.SetTopic(Model, isThemeTopic);
         panel.SetColor(colorId);
         panel.Reset();
     }
@@ -57,4 +58,8 @@ public class TopicView : View<TopicData>
         this.colorId = data.Id;
         background.color = data.Base;
     }
+
+    public void SetThemeTopic(bool isTheme) {
+        isThemeTopic = isTheme;
+    } 
 }

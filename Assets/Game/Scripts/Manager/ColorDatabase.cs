@@ -40,6 +40,7 @@ public static class ColorId {
     public const int green3 = 5;
     public const int green4 = 6;
     public const int green5 = 7;
+    public const int halloween = 8;
 
-    public static int MaxId => green5;
+    public static int MaxId => halloween;
 }

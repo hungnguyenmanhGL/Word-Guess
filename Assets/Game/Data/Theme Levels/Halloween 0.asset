@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   topicList:
-  - {fileID: 11400000, guid: 785dd1337470df24cb4849b52629ba5c, type: 2}
-  - {fileID: 11400000, guid: f551555562c818e41b776bc2848da301, type: 2}
-  - {fileID: 11400000, guid: aa7c15b33fd129e4894f620fa44eeb9d, type: 2}
+  - {fileID: 11400000, guid: 5f91443fc0a431544bc7af5d77983165, type: 2}
+  - {fileID: 11400000, guid: 5ea405f1ea5f8d44a90282114a0958fc, type: 2}
+  - {fileID: 11400000, guid: 91a75dd1424032848ae6b83f6629559d, type: 2}
   starSprite: {fileID: 21300000, guid: 6042fb50b50865c448a4fc2b5a1ca476, type: 3}
   bgSprite: {fileID: 21300000, guid: 28ed1ae889864bd498db0eb301c539ac, type: 3}
+  colorId: 8

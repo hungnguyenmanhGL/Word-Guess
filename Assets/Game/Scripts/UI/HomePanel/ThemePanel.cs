@@ -24,8 +24,14 @@ public class ThemePanel : HomePanel
         }
 
         for (int i = 0; i < themeLvlList.Count; i++) {
-            themeLvlList[i].SetModel(ThemeLevelDatabase.Instance.GetDataById(i));
+            ThemeLevelData data = ThemeLevelDatabase.Instance.GetDataById(i);
+            themeLvlList[i].SetModel(data);
+            themeLvlList[i].SetColor(data.ColorId);
             themeLvlList[i].Show();
         }
+    }
+
+    protected override void UpdateProgress() {
+        foreach (ThemeLevelView view in themeLvlList) view.Show();
     }
 }
