@@ -25,6 +25,7 @@ MonoBehaviour:
     allowed: []
   - answer: hat
     allowed: []
-  - answer: fall
+  - answer: October
     allowed:
     - autumn
+    - fall

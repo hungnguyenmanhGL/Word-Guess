@@ -12,6 +12,7 @@ public class ConfigDatabase : Database<ConfigDatabase> {
     [Header("[Gameplay]")]
     [SerializeField] private int grammarCheckLength = 6;
     [SerializeField] private int maxMistakeCount = 2;
+    [SerializeField] private bool removeExtraInHint;
 
     public Audio DefaultButtonPressAudio => defaultButtonPressAudio;
 
@@ -23,4 +24,5 @@ public class ConfigDatabase : Database<ConfigDatabase> {
 
     public int GrammarCheckLength => grammarCheckLength;
     public int MaxMistakeCount => maxMistakeCount;
+    public bool RemoveExtraInHint => removeExtraInHint;
 }

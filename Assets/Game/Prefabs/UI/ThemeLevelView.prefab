@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4138883695110956893}
   - component: {fileID: 1962743484417877700}
   m_Layer: 5
-  m_Name: LevelView
+  m_Name: ThemeLevelView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1898540925941854712}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf9984b01080c6348aec03b4000b5569, type: 3}
+  m_Script: {fileID: 11500000, guid: 9bfb6d1067421dc409c80dc9825b4e5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onModelChanged:
@@ -84,15 +84,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2941177, g: 0.7508396, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2003802664, guid: 3a2d2c00b7555f644aa3f65b518e6787, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 28ed1ae889864bd498db0eb301c539ac, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -192,7 +192,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -5, y: 0}
-  m_SizeDelta: {x: -120, y: 98}
+  m_SizeDelta: {x: -115, y: 98}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &3994388556210518223
 MonoBehaviour:
@@ -362,6 +362,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 955231755831681202}
     m_Modifications:
+    - target: {fileID: 2821574102463139923, guid: d3e3c54c948dcd243adeb1291a495765, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6042fb50b50865c448a4fc2b5a1ca476, type: 3}
+    - target: {fileID: 4523812167111824188, guid: d3e3c54c948dcd243adeb1291a495765, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6042fb50b50865c448a4fc2b5a1ca476, type: 3}
     - target: {fileID: 6253313545275721603, guid: d3e3c54c948dcd243adeb1291a495765, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -476,6 +484,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 955231755831681202}
     m_Modifications:
+    - target: {fileID: 2821574102463139923, guid: d3e3c54c948dcd243adeb1291a495765, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6042fb50b50865c448a4fc2b5a1ca476, type: 3}
+    - target: {fileID: 4523812167111824188, guid: d3e3c54c948dcd243adeb1291a495765, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6042fb50b50865c448a4fc2b5a1ca476, type: 3}
     - target: {fileID: 6253313545275721603, guid: d3e3c54c948dcd243adeb1291a495765, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -589,6 +605,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 955231755831681202}
     m_Modifications:
+    - target: {fileID: 2821574102463139923, guid: d3e3c54c948dcd243adeb1291a495765, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6042fb50b50865c448a4fc2b5a1ca476, type: 3}
+    - target: {fileID: 4523812167111824188, guid: d3e3c54c948dcd243adeb1291a495765, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6042fb50b50865c448a4fc2b5a1ca476, type: 3}
     - target: {fileID: 6253313545275721603, guid: d3e3c54c948dcd243adeb1291a495765, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

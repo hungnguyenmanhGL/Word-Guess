@@ -8,15 +8,15 @@ using TMPro;
 
 public class LevelView : View<LevelData>
 {
-    [SerializeField] private Button btnLevel;
-    [SerializeField] private Image background;
+    [SerializeField] protected Button btnLevel;
+    [SerializeField] protected Image background;
     [Header("[Visuals]")]
-    [SerializeField] private TextMeshProUGUI tmpLevel;
-    [SerializeField] private List<StarSlot> starList;
+    [SerializeField] protected TextMeshProUGUI tmpLevel;
+    [SerializeField] protected List<StarSlot> starList;
 
     private int colorId;
 
-    private void Start() {
+    protected void Start() {
         btnLevel.onClick.AddListener(OpenLevel);    
     }
 

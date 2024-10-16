@@ -11,14 +11,14 @@ public class HomePanel : UITab {
     [SerializeField] private Button btnPlay;
 
     [Header("[Levels]")]
-    [SerializeField] private ScrollRect levelScroll;
-    [SerializeField] private LevelView levelPrefab;
+    [SerializeField] protected ScrollRect levelScroll;
+    [SerializeField] protected LevelView levelPrefab;
 
     private List<LevelView> lvlList;
-    private int currentLevel;
+    protected int currentLevel;
 
     private void Start() {
-        btnSetting.onClick.AddListener(OpenSettings);
+        if (btnSetting) btnSetting.onClick.AddListener(OpenSettings);
     }
 
     protected override void OnShow(bool instant = false) {
@@ -29,7 +29,6 @@ public class HomePanel : UITab {
     }
 
     protected override void OnBack() {
-        OpenSettings();
     }
 
     protected override void OnResume() {
@@ -37,13 +36,13 @@ public class HomePanel : UITab {
         UpdateProgress();
     }
 
-    private void PlayGame() {
+    protected void PlayGame() {
         int levelToPlay = currentLevel;
         GameSceneController.pendingLoadLevelOption = LoadLevelOption.Create(levelToPlay);
         ScenesManager.Instance.LoadSceneAsyn(GameScene.ByIndex.Game);
     }
 
-    private void UpdateLevel() {
+    protected virtual void UpdateLevel() {
         int lvlCount = LevelDatabase.Instance.GetCount();
         int toSpawn = lvlCount - lvlList.Count;
         for (int i=0; i<toSpawn; i++) {
@@ -63,12 +62,12 @@ public class HomePanel : UITab {
         }
     }
 
-    private void UpdateProgress() {
+    protected void UpdateProgress() {
         foreach (LevelView view in lvlList)
             view.Show();
     }
 
-    private void OpenSettings() {
+    protected void OpenSettings() {
         UIManager.Instance.Push<SettingsPanel>();
     }
 }

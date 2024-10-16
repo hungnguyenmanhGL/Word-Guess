@@ -110,7 +110,12 @@ public class HintPanel : UIFrame
         //Randomize letter for unused indexes
         for (int i = 0; i < availableList.Count; i++) {
             availableList[i].Panel = this;
+            availableList[i].gameObject.SetActive(true);
             if (usedIndex.Contains(i)) continue;
+            if (ConfigDatabase.Instance.RemoveExtraInHint) {
+                availableList[i].gameObject.SetActive(false);
+                continue;
+            }
             availableList[i].SetLetter((char)Random.Range(97, 122));
             availableList[i].ToggleShow(true);
         }

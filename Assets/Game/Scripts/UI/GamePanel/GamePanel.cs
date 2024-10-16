@@ -111,7 +111,6 @@ public class GamePanel : UIFrame {
         string input = inputField.text;
         inputField.text = string.Empty;
         input = RemoveEndSpace(input);
-        Debug.LogError(input);
         input = input.ToLower();
         int num = IsAnswer(input);
         if (num >= 0) {
@@ -150,11 +149,10 @@ public class GamePanel : UIFrame {
         if (input.Equals(ans) || input.Equals(lowerAns) || singular.Equals(ans) || singular.Equals(lowerAns)) 
             return true;
         if (ans.Length >= ConfigDatabase.Instance.GrammarCheckLength) {
-            for (int i=0; i<input.Length; i++) {
-
-            }
+            if (CheckAdmissibleAnswer(input, ans) || CheckAdmissibleAnswer(input, lowerAns)
+                || CheckAdmissibleAnswer(singular, ans) || CheckAdmissibleAnswer(singular, lowerAns)) 
+                return true;
         }
-
         return false;
     }
 
@@ -231,7 +229,7 @@ public class GamePanel : UIFrame {
             end--;
             count++;
         }
-        if (count > 0) word = word.Remove(end + 1, count);
+        if (count > 0) return word.Remove(end + 1, count);
         return word;
     }
 
