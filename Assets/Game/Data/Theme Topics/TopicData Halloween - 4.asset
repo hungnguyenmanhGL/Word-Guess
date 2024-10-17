@@ -10,33 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 017ef7f24da00764dab0b2a6d0f586b4, type: 3}
-  m_Name: TopicData Halloween - 0
+  m_Name: TopicData Halloween - 4
   m_EditorClassIdentifier: 
-  id: 0
-  topic: Halloween costumes
+  id: 4
+  topic: Horror movies
   topicImg: {fileID: 0}
   isNoun: 0
   answerList:
-  - answer: ghost
+  - answer: the Conjuring
     allowed:
-    - spirit
-    - wraith
-  - answer: frankenstein
+    - conjuring
+  - answer: insidious
     allowed: []
-  - answer: dracula
-    allowed:
-    - vampire
-    - bat
-  - answer: witch
-    allowed:
-    - wizard
-    - socerer
-  - answer: mummy
+  - answer: it
     allowed: []
-  - answer: pirate
+  - answer: annabelle
     allowed: []
-  - answer: skeleton
-    allowed:
-    - death
-  - answer: fairy
+  - answer: scream
+    allowed: []
+  - answer: saw
     allowed: []

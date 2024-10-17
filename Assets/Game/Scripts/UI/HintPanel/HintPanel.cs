@@ -10,8 +10,13 @@ using TMPro;
 public class HintPanel : UIFrame
 {
     [Header("[Topic]")]
+    [SerializeField] private Image background;
     [SerializeField] private TextMeshProUGUI tmpTopic;
     [SerializeField] private Image imgTopic;
+
+    [Header("[Tools]")]
+    [SerializeField] private GameButton btnSingleHint;
+    [SerializeField] private GameButton btnReveal;
 
     [Header("[Refs]")]
     [SerializeField] private GridLayoutGroup wordFillGrid;
@@ -33,6 +38,7 @@ public class HintPanel : UIFrame
         if (slotList == null) slotList = new List<FillLetterView>();
         if (availableList == null) availableList = new List<LetterView>();
         if (usedIndex == null) usedIndex = new HashSet<int>();
+        btnReveal.onClick.AddListener(RevealAnswer);
     }
 
     protected override void OnShow(bool instant = false) {
@@ -146,6 +152,11 @@ public class HintPanel : UIFrame
         tmpTopic.gameObject.SetActive(!data.IsImageTopic);
         tmpTopic.text = data.Topic;
     }
+
+    public void SetColor(Color color) {
+        background.color = color;
+        btnReveal.SetColor(color);
+    }
     #endregion
 
     #region Fill - Undo
@@ -184,6 +195,18 @@ public class HintPanel : UIFrame
             }
         }
         return slotList.Count + 1;
+    }
+    #endregion
+
+    #region Tool
+    private void RevealAnswer() {
+        for (int i=1; i<slotList.Count; i++) {
+            slotList[i].SetFilledLetter(answer[i], -1);
+        } 
+        foreach (LetterView view in availableList) {
+            view.ToggleShow(false);
+        }
+        OnCorrectFill();
     }
     #endregion
 }

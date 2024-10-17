@@ -15,6 +15,7 @@ public class WinPanel : UIFrame
 
     [Header("[Refs]")]
     [SerializeField] private Image background;
+    [SerializeField] private TextMeshProUGUI tmpGrat;
     [SerializeField] private GameButton btnBack;
     [SerializeField] private RectTransform emojiRect;
     [SerializeField] private List<Animator> animPrefabs;
@@ -42,6 +43,7 @@ public class WinPanel : UIFrame
     public void SetColor(ColorData colorData) {
         topicBg.color = colorData.Base;
         background.color = colorData.LightBg;
+        tmpGrat.color = colorData.Base;
         btnBack.SetColor(colorData.Base);
     }
 

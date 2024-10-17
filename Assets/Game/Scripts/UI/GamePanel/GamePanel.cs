@@ -170,6 +170,7 @@ public class GamePanel : UIFrame {
     public void OnHintShow(AnswerView selected, HintPanel hintPanel) {
         lastHintIndex = answerList.IndexOf(selected);
         hintPanel.SetTopic(topicData);
+        hintPanel.SetColor(inputBg.color);
     }
 
     public void OnAnswerByHint() {

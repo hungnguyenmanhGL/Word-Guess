@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 400}
+  m_AnchoredPosition: {x: 0, y: 500}
   m_SizeDelta: {x: 800, y: 550}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8394170350459040221
@@ -644,6 +644,7 @@ MonoBehaviour:
   tmpTopic: {fileID: 7899373717314646310}
   imgTopic: {fileID: 8937066197510827264}
   background: {fileID: 5247842807964474877}
+  tmpGrat: {fileID: 1581855147905832873}
   btnBack: {fileID: 6401025445726571177}
   emojiRect: {fileID: 7538998184754646571}
   animPrefabs:
@@ -1125,6 +1126,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 4128152041456239962, guid: 33bc7b7691953644785ba6ed29d78a96, type: 3}
+      propertyPath: title
+      value: 
+      objectReference: {fileID: 8069823801383883747}
+    - target: {fileID: 4128152041456239962, guid: 33bc7b7691953644785ba6ed29d78a96, type: 3}
+      propertyPath: pressAudio.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
     - target: {fileID: 4516548618615005170, guid: 33bc7b7691953644785ba6ed29d78a96, type: 3}
       propertyPath: m_Sprite
       value: 
