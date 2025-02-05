@@ -15,8 +15,9 @@ public class HintPanel : UIFrame
     [SerializeField] private Image imgTopic;
 
     [Header("[Tools]")]
-    [SerializeField] private GameButton btnSingleHint;
     [SerializeField] private GameButton btnReveal;
+    [SerializeField] private GameButton btnRevealLetter;
+    [SerializeField] private GameButton btnClearAll;
 
     [Header("[Refs]")]
     [SerializeField] private GridLayoutGroup wordFillGrid;
@@ -27,6 +28,8 @@ public class HintPanel : UIFrame
     [SerializeField] private List<FillLetterView> slotList;
     [SerializeField] private List<LetterView> availableList;
     private HashSet<int> usedIndex;
+
+    private FillLetterView revealingView;
 
     private Tween wrongTween;
 
@@ -39,6 +42,7 @@ public class HintPanel : UIFrame
         if (availableList == null) availableList = new List<LetterView>();
         if (usedIndex == null) usedIndex = new HashSet<int>();
         btnReveal.onClick.AddListener(RevealAnswer);
+        btnRevealLetter.onClick.AddListener(RevealLetter);
     }
 
     protected override void OnShow(bool instant = false) {
@@ -48,6 +52,7 @@ public class HintPanel : UIFrame
 
     protected override void OnHideCompleted() {
         base.OnHideCompleted();
+        StopRevealLetter();
         GamePanel gamePanel = (GamePanel)UIManager.Instance.Peek();
         gamePanel.SelectInput();
         if (isAnswered) {
@@ -156,12 +161,16 @@ public class HintPanel : UIFrame
     public void SetColor(Color color) {
         background.color = color;
         btnReveal.SetColor(color);
+        btnRevealLetter.SetColor(color);
+        btnClearAll.SetColor(color);
+
     }
     #endregion
 
     #region Fill - Undo
     public void FillSlot(LetterView selected) {
         if (currentIndex > slotList.Count) return;
+        StopRevealLetter();
 
         selected.ToggleShow(false);
         //fill the selected letter to the current index to fill (when first opened, index = 1)
@@ -200,6 +209,8 @@ public class HintPanel : UIFrame
 
     #region Tool
     private void RevealAnswer() {
+        StopRevealLetter();
+
         for (int i=1; i<slotList.Count; i++) {
             slotList[i].SetFilledLetter(answer[i], -1);
         } 
@@ -207,6 +218,31 @@ public class HintPanel : UIFrame
             view.ToggleShow(false);
         }
         OnCorrectFill();
+    }
+
+    //if the slots are all filled, this is turned off
+    #region Reveal letter of the next empty slot
+    private void RevealLetter()
+    {
+        //if the smallest indexed empty slot is already revealing -> return 
+        if (currentIndex >= slotList.Count || currentIndex < 0
+            || revealingView == slotList[currentIndex]) return;
+        StopRevealLetter();
+        revealingView = slotList[currentIndex];
+        revealingView.RevealCorrectLetter(answer[currentIndex]);
+    }
+
+    private void StopRevealLetter()
+    {
+        if (!revealingView) return;
+        revealingView.KillReveal();
+        revealingView = null;
+    }
+    #endregion
+
+    private void ClearAllLetters()
+    {
+
     }
     #endregion
 }

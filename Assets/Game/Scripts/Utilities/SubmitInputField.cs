@@ -18,6 +18,10 @@ public class SubmitInputField : TMP_InputField
         set { keyboardDoneEvent = value; }
     }
 
+    protected override void Start() {
+        TouchScreenKeyboard.Android.consumesOutsideTouches = true;
+    }
+
     //m_Keyboard is protected in metadata
     void Update() {
         if (m_SoftKeyboard != null && m_SoftKeyboard.status == TouchScreenKeyboard.Status.Done && m_SoftKeyboard.status != TouchScreenKeyboard.Status.Canceled) {
